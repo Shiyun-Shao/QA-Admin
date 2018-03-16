@@ -1,0 +1,53 @@
+$--color-primary: #ca303a;
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+@import '~element-ui/packages/theme-chalk/src/index';
+
+//to reset element-ui default css
+.el-upload {
+  input[type='file'] {
+    display: none !important;
+  }
+}
+
+.el-upload__input {
+  display: none;
+} //暂时性解决diolag 问题 https://github.com/ElemeFE/element/issues/2461
+.el-dialog {
+  transform: none;
+  left: 0;
+  position: relative;
+  margin: 0 auto;
+} //element ui upload
+.upload-container {
+  .el-upload {
+    width: 100%;
+    .el-upload-dragger {
+      width: 100%;
+      height: 200px;
+    }
+  }
+}
+
+.el-button.el-button--danger.is-plain {
+  background-color: #ca303a;
+  color: white;
+}
+
+.el-range-editor.is-active,
+.el-range-editor.is-active:hover,
+
+.el-input.is-active .el-input__inner,
+.el-input__inner:focus,
+.el-select .el-input.is-focus .el-input__inner {
+  border-color: #f8e8e8;
+}
+
+.el-select-dropdown .selected {
+  color: #ca303a;
+}
+.el-button:focus,
+.el-button:hover {
+  border-color: #f8e8e8;
+  background-color: #f8e8e8;
+  color: #ca303a;
+}

@@ -1,0 +1,49 @@
+{
+  "code": "0",
+  "msg": "success",
+  "data": {
+    "firstQueryDate": 1516186306818,
+    "totalPages": 1,
+    "data": [
+      {
+        "id": "bb8f3ac8-44e9-42d7-bd23-7bf9fc8b9333",
+        "sn": "201304522",
+        "name": "尚都比拉2013夏装新款女装 韩版",
+        "salesTotal": 0,
+        "distributionPrice": 251,
+        "listImage":
+          "https://img.alicdn.com/imgextra/i4/801955496/TB2Dg7OcwjN8KJjSZFkXXaboXXa_!!801955496.jpg",
+        "productSpecificationStr": "白色;S",
+        "productStatus": "正常售卖",
+        "marketable": true,
+        "sellStatus": "可卖"
+      },
+      {
+        "id": "2d843622-e8a9-4d97-ba9a-96a042230dc3",
+        "sn": "201304529",
+        "name": "尚都比拉女装2013夏装新款蕾丝连衣裙",
+        "salesTotal": 0,
+        "distributionPrice": 290,
+        "listImage":
+          "https://img.alicdn.com/imgextra/i4/801955496/TB2Dg7OcwjN8KJjSZFkXXaboXXa_!!801955496.jpg",
+        "productSpecificationStr": "白色;M",
+        "productStatus": "正常售卖",
+        "marketable": true,
+        "sellStatus": "暂不可卖"
+      },
+      {
+        "id": "b5a23411-f7d6-4d40-8c37-2aca27ee0f34",
+        "sn": "201304527",
+        "name": "尚都比拉2013夏装新款淑女装 春款森",
+        "salesTotal": 0,
+        "distributionPrice": 281,
+        "listImage":
+          "https://img.alicdn.com/imgextra/i4/801955496/TB2Dg7OcwjN8KJjSZFkXXaboXXa_!!801955496.jpg",
+        "productSpecificationStr": "粉红色;S",
+        "productStatus": "正常售卖",
+        "marketable": true,
+        "sellStatus": "冻结"
+      }
+    ]
+  }
+}
