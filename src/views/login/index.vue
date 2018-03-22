@@ -2,10 +2,6 @@
   <div class="login-container" :style="{background: 'url('+bgImg+') no-repeat'}">
     <div class="mask">
       <div class="content">
-        <!-- <div class="logo">
-        <img :src="logo" alt="logo">
-        </div> -->
-      <!-- <div class="welcome">欢迎你回来</div> -->
       <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left" label-width="0px" class="card-box login-form">
         <el-form-item prop="username">
         <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="输入手机/账号" />
@@ -16,14 +12,6 @@
           <svg-icon icon-class="eye" />
         </span>
         </el-form-item>
-        <!-- <el-form-item style="margin-bottom: 54px">
-        <el-col :span="16">
-          <el-input name="code" type="text" v-model="loginForm.codenum" autoComplete="on" placeholder="验证码" />
-        </el-col>
-        <el-col :span="8" class="captcha-panel">
-          <img :src="captchaUrl"  @click="refreshCode"/>
-        </el-col>
-        </el-form-item> -->
         <el-form-item class="form-btn">
         <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="handleLogin">
           <span v-show="!loading">登录</span>

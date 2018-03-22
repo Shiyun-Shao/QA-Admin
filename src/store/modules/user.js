@@ -33,13 +33,11 @@ const user = {
       return login(
         username,
         userInfo.password,
-        userInfo.codenum,
-        userInfo.clientId
       ).then(
         response => {
           const data = response.data;
-          setToken(data.sessinId);
-          commit('SET_TOKEN', data.sessinId);
+          setToken(data.id);
+          commit('SET_TOKEN', data.id);
           return response;
         },
         function(res) {

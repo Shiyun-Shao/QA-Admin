@@ -4,6 +4,6 @@ const prodEnv = require('./prod.env');
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  // BASE_API: '"http://exam.api.incker.cn"'
-  BASE_API: '"http://192.168.1.199:3000"'
+  BASE_API: '"http://exam.api.incker.cn"'
+  // BASE_API: '"http://192.168.1.199:3000"'
 });

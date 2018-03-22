@@ -20,9 +20,60 @@ import Layout from '../views/layout/Layout';
 **/
 export const constantRouterMap = [
   { path: '/login', component: _import('login/index'), hidden: true },
-  { path: '/404', component: _import('404'), hidden: true },
-
-  { path: '*', redirect: '/404', hidden: true }
+  // { path: '/404', component: _import('404'), hidden: true },
+  {
+    path: '/',
+    redirect: '/questionBank/index'
+  },
+  {
+    path: '/questionBank',
+    component: Layout,
+    name: 'questionBank',
+    children: [
+      {
+        path: 'index',
+        component: _import('questionBank/index'),
+        meta: { title: '题库管理', icon: 'topic' }
+      }
+    ]
+  },
+  {
+    path: '/tag',
+    component: Layout,
+    name: 'tag',
+    children: [
+      {
+        path: 'index',
+        component: _import('tag/index'),
+        meta: { title: '标签管理', icon: 'tags' }
+      }
+    ]
+  },
+  {
+    path: '/coupon',
+    component: Layout,
+    name: 'coupon',
+    children: [
+      {
+        path: 'index',
+        component: _import('coupon/index'),
+        meta: { title: '优惠券管理', icon: 'coupon' }
+      }
+    ]
+  },
+  {
+    path: '/statistics',
+    component: Layout,
+    name: 'statistics',
+    children: [
+      {
+        path: 'index',
+        component: _import('statistics/index'),
+        meta: { title: '统计', icon: 'count' }
+      }
+    ]
+  }
+  // { path: '*', redirect: '/404', hidden: true }
 ];
 
 export default new Router({

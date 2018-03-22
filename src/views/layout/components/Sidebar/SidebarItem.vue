@@ -38,5 +38,12 @@ export default {
       type: Array
     }
   }
-}
+};
 </script>
+
+<style rel="stylesheet/scss" lang="scss" scoped>
+.el-menu-item-group {
+  margin-bottom: 0 !important;
+}
+</style>
+

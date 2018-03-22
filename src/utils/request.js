@@ -39,15 +39,17 @@ service.interceptors.response.use(
      * code为非0是抛错
      */
     const res = response.data
-    if (res.code !== '0') {
+    console.log(res.errCode);
+    if (res.errCode !== 0) {
+      // debugger;
       Message({
-        message: res.msg,
+        message: res.errMsg,
         type: 'error',
         duration: 5 * 1000
       })
 
       // 50008:非法的token; 50012:其他客户端登录了;  50014:Token 过期了;
-      if (res.code === 810000 || res.code === 400) {
+      if (res.errCode === 810000 || res.errCode === 400) {
         MessageBox.confirm(
           '身份过期，可以取消继续留在该页面，或者重新登录',
           '确定登出',
