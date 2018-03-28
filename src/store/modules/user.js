@@ -36,8 +36,8 @@ const user = {
       ).then(
         response => {
           const data = response.data;
-          setToken(data.id);
-          commit('SET_TOKEN', data.id);
+          setToken(data.token);
+          commit('SET_TOKEN', data.token);
           return response;
         },
         function(res) {

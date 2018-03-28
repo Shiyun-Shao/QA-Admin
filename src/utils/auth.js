@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 
-const TokenKey = 'kol-token'
+const TokenKey = 'master-token'
 
 export function getToken() {
   return Cookies.get(TokenKey)
