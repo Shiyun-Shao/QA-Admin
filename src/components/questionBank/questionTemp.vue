@@ -27,7 +27,7 @@
         <el-form-item label="类型标签" prop="tag" class="tag">
           <!-- <el-input v-model="ruleForm.tag"></el-input> -->
             <el-select
-               v-model="tagValue"
+               v-model="myTagValue"
                filterable
                remote
                reserve-keyword
@@ -57,13 +57,21 @@ import { getTagList } from '@/api/tag';
 export default {
   data() {
     return {
-      tag: this.tagValue,
+      myTagValue: this.tagValue,
       currentPage: 1,
       pagesize: 10,
       loading: false,
       options: [],
       list: []
     };
+  },
+  watch: {
+    tagValue(val) {
+      this.myTagValue = val;
+    },
+    myTagValue(val) {
+      this.$emit('changeTagValue', val);
+    }
   },
   props: {
     rules: {},
@@ -77,7 +85,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-        //   this.ruleForm.tag = this.tagValue;
+          //   this.ruleForm.tag = this.tagValue;
           this.$emit('submitClick', this.ruleForm);
         } else {
           return false;

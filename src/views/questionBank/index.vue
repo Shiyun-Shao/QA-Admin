@@ -47,6 +47,7 @@
      :putType="putType"
      :tagValue="tagValue"
      :questionNum="questionNum"
+     @changeTagValue="changeTagValue"
      @submitClick="submitForm"
      @changeClick="changeForm"
      @returnClick="returnList"></questionTemp>
@@ -147,6 +148,9 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
+    },
+    changeTagValue(val) {
+      this.tagValue = val;
     },
     createQuest() {
       this.clearForm();
