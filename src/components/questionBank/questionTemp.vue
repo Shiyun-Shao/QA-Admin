@@ -134,7 +134,6 @@ export default {
           this.options = this.list.filter(item => {
             return item.label.toLowerCase().indexOf(query.toLowerCase()) > -1;
           });
-          console.log(this.options);
         }, 200);
       } else {
         this.options = [];
