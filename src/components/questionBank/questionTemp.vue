@@ -25,7 +25,22 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="类型标签" prop="tag" class="tag">
-          <el-input v-model="ruleForm.tag"></el-input>
+          <!-- <el-input v-model="ruleForm.tag"></el-input> -->
+            <el-select
+               v-model="tagValue"
+               filterable
+               remote
+               reserve-keyword
+               placeholder="请输入关键词"
+               :remote-method="remoteMethod"
+               :loading="loading">
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+            </el-select>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')" v-if="putType === 1">立即创建</el-button>
@@ -38,17 +53,31 @@
 </template>
 
 <script>
+import { getTagList } from '@/api/tag';
 export default {
+  data() {
+    return {
+      tag: this.tagValue,
+      currentPage: 1,
+      pagesize: 10,
+      loading: false,
+      options: [],
+      list: []
+    };
+  },
   props: {
     rules: {},
     ruleForm: {},
     putType: Number,
+    tagValue: String,
     questionNum: [String, Number]
   },
+  created() {},
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
+        //   this.ruleForm.tag = this.tagValue;
           this.$emit('submitClick', this.ruleForm);
         } else {
           return false;
@@ -69,6 +98,38 @@ export default {
     },
     returnList() {
       this.$emit('returnClick');
+    },
+    remoteMethod(query) {
+      getTagList({
+        keyword: query,
+        pagenum: this.currentPage,
+        pagesize: this.pagesize,
+        order: '',
+        sort: ''
+      }).then(res => {
+        if (res.errCode === 0) {
+          var tagNames = [];
+          res.data.rows.map(item => {
+            tagNames.push(item.name);
+            this.ruleForm.tag = item.id;
+          });
+          this.list = tagNames.map(item => {
+            return { value: item, label: item };
+          });
+        }
+      });
+      if (query !== '') {
+        this.loading = true;
+        setTimeout(() => {
+          this.loading = false;
+          this.options = this.list.filter(item => {
+            return item.label.toLowerCase().indexOf(query.toLowerCase()) > -1;
+          });
+          console.log(this.options);
+        }, 200);
+      } else {
+        this.options = [];
+      }
     }
   }
 };

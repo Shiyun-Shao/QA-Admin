@@ -5,13 +5,13 @@
       <div class="line"></div>
     </div>
     <div class="question-list" v-if="isCreate">
-      <el-button type="primary" @click="createQuest">创建题目</el-button>
+      <search :title="title" @create="createQuest" @search="search"></search>
       <template>
         <el-table :data="questionList" style="width: 100%">
           <el-table-column
             type="index"
             label="序号"
-            width="180">
+            width="130">
           </el-table-column>
           <el-table-column
             label="题目内容"
@@ -19,7 +19,9 @@
           </el-table-column>
           <el-table-column 
             label="操作"
-            width="180">
+            width="230"
+            header-align="center"
+            align="center">
             <template slot-scope="scope">
               <el-button
                 size="mini"
@@ -43,6 +45,7 @@
      :rules="rules"
      :ruleForm="ruleForm"
      :putType="putType"
+     :tagValue="tagValue"
      :questionNum="questionNum"
      @submitClick="submitForm"
      @changeClick="changeForm"
@@ -58,12 +61,15 @@ import {
   changeQuestion,
   checkQuestion
 } from '@/api/question';
+import { checkTag } from '@/api/tag';
 import questionTemp from '../../components/questionBank/questionTemp';
 import pagination from '../../components/pagination';
+import search from '../../components/search';
 export default {
   components: {
     questionTemp,
-    pagination
+    pagination,
+    search
   },
   data() {
     return {
@@ -78,9 +84,6 @@ export default {
         ],
         standard: [
           { required: true, message: '请设置正确的答案', trigger: 'change' }
-        ],
-        tag: [
-          { required: true, message: '请给题目添加类型标签', trigger: 'blur' }
         ]
       },
       ruleForm: {
@@ -90,6 +93,9 @@ export default {
         tag: ''
       },
       isCreate: true,
+      title: '创建题目',
+      keywords: '',
+      tagValue: '',
       putType: 1,
       questionNum: '',
       questionIdList: [],
@@ -105,7 +111,7 @@ export default {
     getQuestionList() {
       var _this = this;
       getQuestion({
-        keyword: '',
+        keyword: this.keywords,
         pagesize: this.pagesize,
         pagenum: this.currentPage,
         order: '',
@@ -135,11 +141,16 @@ export default {
         this.getQuestionList();
       });
     },
+    search(val) {
+      this.keywords = val;
+      this.getQuestionList();
+    },
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
     createQuest() {
       this.clearForm();
+      this.tagValue = '';
       this.isCreate = false;
     },
     returnList() {
@@ -164,6 +175,11 @@ export default {
           }
         });
         this.questionIdList = questionList;
+        checkTag(this.ruleForm.tag).then(res => {
+          if (res.errCode === 0) {
+            this.tagValue = res.data.name;
+          }
+        });
       });
     },
     handleCurrentChange(val) {
