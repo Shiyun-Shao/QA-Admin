@@ -154,6 +154,7 @@ export default {
     },
     createQuest() {
       this.clearForm();
+      this.putType = 1;
       this.tagValue = '';
       this.isCreate = false;
     },
